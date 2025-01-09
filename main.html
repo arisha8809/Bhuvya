@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Unbreakable Bond</title>
+  <style>
+    /* General Styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url('background.jpg') no-repeat center center/cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 10px 50px;
+      position: fixed;
+      width: 95%;
+      z-index: 10;
+      background: transparent;
+    }
+
+    .navbar .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .navbar .nav-links {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+    }
+
+    .navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar .watchlist {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .navbar .watchlist:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Section */
+    .main-content {
+      padding: 150px 80px; /* Increased top padding to ensure sufficient space below navbar */
+      text-align: left;
+    }
+
+    .main-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      opacity: 0;
+      margin-top: 100px;
+      transform: translateY(50px); /* Adjusted animation for bottom-to-top effect */
+      animation: fadeInUp 1.5s forwards ease-in;
+    }
+
+    .main-content p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px); /* Adjusted animation for bottom-to-top effect */
+      animation: fadeInUp 1.5s forwards ease-in 0.5s;
+    }
+
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(50px); /* Adjusted animation for bottom-to-top effect */
+      animation: fadeInUp 1.5s forwards ease-in 1s;
+    }
+
+    .image-grid img {
+      width: 250px;
+      height: 250px;
+      border-radius: 5px;
+      object-fit: cover;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .play-button {
+      background-color: #e50914;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      text-transform: uppercase;
+      box-shadow: 0px 5px 15px rgba(229, 9, 20, 0.5);
+      margin-top: 25px;
+      opacity: 0;
+      transform: translateY(50px); /* Adjusted animation for bottom-to-top effect */
+      animation: fadeInUp 1.5s forwards ease-in 1.5s;
+    }
+
+    .play-button:hover {
+      background-color: #f40612;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 20;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-modal video {
+      width: 80%;
+      border-radius: 5px;
+      height: 90%;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <img src="netflix-logo.png" alt="Netflix Logo" class="logo">
+    <div class="nav-links">
+      <a href="#">Giggles</a>
+      <a href="#">Tears</a>
+      <a href="#">Hugs</a>
+      <a href="#">Adventures</a>
+      <a href="#">Us</a>
+
+    </div>
+    <a class="watchlist" onclick="playWatchlistVideo()">Arisha's Watchlist</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>The Unbreakable Bond</h1>
+    <p>
+      Bhuvya, you’ve been my sunshine—bringing warmth, laughter, and light into my life. From silly jokes to deep talks, you’ve always been my anchor and partner-in-crime. Thank you for being you and making life brighter.Here's to us, always and forever
+    </p>
+    <div class="image-grid">
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <img src="image3.jpg" alt="Image 3">
+      <img src="image4.jpg" alt="Image 4">
+      <img src="image5.jpg" alt="Image 4">
+    </div>
+    <button class="play-button" onclick="playVideo()">▶ Play</button>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="video-modal">
+    <video id="video" controls autoplay>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="close-button" onclick="closeVideo()">✖</button>
+  </div>
+
+  <!-- Watchlist Video Modal -->
+  <div class="video-modal" id="watchlist-modal">
+    <video id="watchlist-video" controls autoplay>
+      <source src="bhuvya.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="close-button" onclick="closeWatchlistVideo()">✖</button>
+  </div>
+
+  <script>
+    // JavaScript to control video modal
+    function playVideo() {
+      const modal = document.getElementById('video-modal');
+      const video = document.getElementById('video');
+      modal.style.display = 'flex';
+      video.play();
+    }
+
+    function closeVideo() {
+      const modal = document.getElementById('video-modal');
+      const video = document.getElementById('video');
+      modal.style.display = 'none';
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    function playWatchlistVideo() {
+      const modal = document.getElementById('watchlist-modal');
+      const video = document.getElementById('watchlist-video');
+      modal.style.display = 'flex';
+      video.play();
+    }
+
+    function closeWatchlistVideo() {
+      const modal = document.getElementById('watchlist-modal');
+      const video = document.getElementById('watchlist-video');
+      modal.style.display = 'none';
+      video.pause();
+      video.currentTime = 0;
+    }
+  </script>
+</body>
+</html>

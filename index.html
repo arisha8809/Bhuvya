@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Intro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace the source with your Netflix-style video -->
+  <video autoplay muted playsinline id="netflix-intro">
+    <source src="intro.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    // Redirect to "Who's Watching" page after the video ends
+     video = document.getElementById('netflix-intro');
+    video.addEventListener('ended', () => {
+      window.location.href = "whos_watching.html";
+    });
+  </script>
+</body>
+</html>
